@@ -1,73 +1,75 @@
-#!/bin/bash
-echo ".\" Manual Page for _printf
-.TH PRINTF 3 "2023-12-01" "Version 1.0.0.0.1"
+NAM
 
-.SH NAME
-_printf \- produces output according to a format
+_printf - formatted output conversion
 
-.SH SYNOPSIS
-\fBinclude "main.h"\fR
-.br
-\fBint _printf(const char *format, ...);\fR
+SYNOPSIS
+#include "main.h"
 
-.SH DESCRIPTION
-Produces output according to a format.
-.br
-In case of misused type function will return error.
+int _printf(const char *format, ...);
 
-.SH RETURN VALUE
-Returns the length of output.
+DESCRIPTION
+The _printf function writes output to stdout according to a format.
 
-.SH FORMATS
-Formats of _printf function:
+The format string is a character string, beginning and ending in its
+initial shift state, if any.  The format string is composed of zero or
+more directives: ordinary characters (not %), which are copied
+unchanged to the output stream; and conversion specifications, each of
+which results in fetching zero or more subsequent arguments.  Each
+conversion specification is introduced by the character %, and ends
+with a conversion specifier.  In between there may be (in this order)
+zero or more flags, an optional minimum field width, an optional
+precision and an optional length modifier.  The arguments must
+correspond properly (after type promotion) with the conversion
+specifier.
 
-.TP
-\fB%c\fR
-Char argument's flag.
+													 RETURN VALUE
+													 Upon successful return, _printf returns the number of characters
+													 printed (excluding the null byte used to end output to strings).
+													 If an output error is encountered, the function returns -1.
 
-.TP
-\fB%s\fR
-String argument's flag.
+												
+										   			 EXAMPLES
+									
+						    							 int main(void)
+					
+	     												 {
 
-.TP
-\fB%i\fR
-Integer argument's flag.
+														 _printf("Hello, %s!\n", "world");
+														 // Output: Hello, world!
 
-.TP
-\fB%d\fR
-Decimal argument's flag.
+														 _printf("The value of pi is approximately %f\n", 3.14159);
+														 // Output: The value of pi is approximately 3.141590
 
-.TP
-\fB%%\fR
-Prints '%'
+													
+		      												 _printf("You have %d apples and %d oranges\n", 5, 3);
+	
+														 // Output: You have 5 apples and 3 oranges
 
-.SH EXAMPLE
-.P
-\fB_printf("Let\'s print %c simple %s.", 'a' "sentence");
-.P
-Output: \fBLet's print a simple sentence.\fR
-.P
-Return: 29
+													
+														 return (0);
+													 }
 
-.SH REPORTING BUGS
-Contact with Authors
+												
+													 SEE ALSO
+													 printf(3), putchar(3), va_arg(3), va_start(3)
 
-.SH AUTHORS
-Ogtay muradov
-.br
-Shahana Gurbanova
+												
+													 NOTES
+													 The _printf function currently supports the following conversion
+													 specifiers:
+													 - %c: Character
+													 - %s: String
+													 - %d, %i: Decimal integer
 
-.SH COPYRIGHT
-Free to use.
+												
+													 Additional conversion specifiers and modifiers may be added as needed
+													 by extending the _printf function and providing corresponding support
+													 functions.
 
-.SH SEE ALSO
-man _putchar.c
-.br
-man print_char.c
-.br
-man print_string.c
-.br
-man print_decimal.c" > man_3_printf.1
-mv man_3_printf.1 /usr/local/man/man1/
-gzip -f /usr/local/man/man1/man_3_printf.1
-man man_3_printf
+												
+													 BUGS
+													 No known bugs.
+
+												
+													 AUTHOR
+													 Created by Ogtay Muradov, Shahana Gurbanova
